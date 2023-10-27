@@ -59,7 +59,7 @@ class TransactionController extends Controller
      */
     public function edit(Transaction $transaction)
     {
-        //
+        return view('transactions.edit', compact('transaction'));
     }
 
     /**
@@ -67,7 +67,21 @@ class TransactionController extends Controller
      */
     public function update(Request $request, Transaction $transaction)
     {
-        //
+        $validated = $request->validate([
+            'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'type' => 'required|string|max:30',
+            'category' => 'required|string|max:30',
+            'note' => 'required|string',
+        ]);
+
+        $transaction = Transaction::create([
+            'amount' => $validated['amount'],
+            'type' => $validated['type'],
+            'category' => $validated['category'],
+            'note' => $validated['note'],
+        ]);
+
+        return redirect()->route('transactions.index')->with('success', 'Transaction updated successfully.');
     }
 
     /**
@@ -75,6 +89,7 @@ class TransactionController extends Controller
      */
     public function destroy(Transaction $transaction)
     {
-        //
+        $transaction->delete();
+        return redirect()->route('transactions.index')->with('success', 'Transaction deleted successfully.');
     }
 }
