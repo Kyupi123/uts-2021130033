@@ -2,7 +2,7 @@
 
 use App\Http\Controllers\TransactionController;
 use Illuminate\Support\Facades\Route;
-
+use App\Http\Controllers\LandingController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -13,9 +13,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function () {
-    return view('landing');
-});
+Route::get('/', LandingController::class)->name('landing');
 
 Route::resource('transactions', TransactionController::class);

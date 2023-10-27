@@ -12,7 +12,8 @@ class TransactionController extends Controller
      */
     public function index()
     {
-        //
+        $transactions = Transaction::paginate(10);
+        return view('transactions.index', compact('transactions'));
     }
 
     /**
@@ -42,7 +43,7 @@ class TransactionController extends Controller
             'note' => $validated['note'],
         ]);
 
-        return $transaction;
+        return redirect()->route('transactions.index')->with('success', 'Transaction added successfully.');
     }
 
     /**
@@ -50,7 +51,7 @@ class TransactionController extends Controller
      */
     public function show(Transaction $transaction)
     {
-        //
+        return view('transactions.show', compact('transaction'));
     }
 
     /**
