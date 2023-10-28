@@ -1,6 +1,6 @@
 @extends('layouts.template')
 
-@section('title', 'Books List')
+@section('title', 'Transactions List')
 
 @section('content')
     <div class="mt-4 p-5 bg-black text-white rounded">
