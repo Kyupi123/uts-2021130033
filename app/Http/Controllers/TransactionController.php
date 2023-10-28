@@ -30,7 +30,7 @@ class TransactionController extends Controller
     public function store(Request $request)
     {
         $validated = $request->validate([
-            'amount' => 'required|regex:/^\d+(\.\d{1,2})?$/',
+            'amount' => 'required|decimal:0,3',
             'type' => 'required|string|max:30',
             'category' => 'required|string|max:30',
             'note' => 'required|string',

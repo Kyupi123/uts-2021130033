@@ -32,7 +32,7 @@ class TransactionSeeder extends Seeder
 
         $faker = \Faker\Factory::create();
         for ($i=0; $i < 100; $i++) {
-            $amount = $faker -> randomFloat(3, 10000, 400000);
+            $amount = $faker -> randomFloat(3, 10000, 1000000);
             $type = $faker -> randomElement($cat);
             if ($type == 'income') {
                 $category = $faker -> randomElement($income);
