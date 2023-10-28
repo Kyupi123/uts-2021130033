@@ -14,6 +14,7 @@
     </div>
     @endif
 
+    <div class="container mt-5"><h1>Transactions Count: {{ $transactionCount }}</h1></div>
     <div class="container mt-5">
         <table class="table table-bordered mb-5">
             <thead>
@@ -81,6 +82,45 @@
             </tbody>
         </table>
 
+        <div class="container mt-5">
+            <table class="table table-bordered mb-5">
+                <thead>
+                    <tr class="table-success">
+                        <th>Jumlah Saldo</th>
+                        <th>Total Income</th>
+                        <th>Total Expense</th>
+                        <th>Jumlah Transaksi Income</th>
+                        <th>Jumlah Transaksi Expense</th>
+                    </tr>
+                    <tr>
+                        <th>Rp. {{ number_format($balance, 2, ',', '.') }}</th>
+                        <th>Rp. {{ number_format($totincome, 2, ',', '.') }}</th>
+                        <th>Rp. {{ number_format($totexpense, 2, ',', '.') }}</th>
+                        <th>{{ $jmlincome }}</th>
+                        <th>{{ $jmlexpense }}</th>
+                    </tr>
+                </thead>
+            </table>
+        </div>
+        @php
+            $balance = 0; $totincome = 0; $totexpense = 0; $jmlincome = 0; $jmlexpense = 0;
+        @endphp
+        @foreach ($anotherTransactions as $polo)
+        @if ($polo->type == 'income')
+        @php
+            $totincome += $polo->amount;
+            $jmlincome += 1;
+        @endphp
+        @else
+            @php
+                $totexpense += $polo->amount;
+                $jmlexpense += 1;
+            @endphp
+        @endif
+        @endforeach
+        @php
+        $balance = $totincome - $totexpense;
+        @endphp
         <div class="container mt-5">
             <table class="table table-bordered mb-5">
                 <thead>
