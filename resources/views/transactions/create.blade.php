@@ -23,7 +23,8 @@
                 @csrf
                 <div class="mb-3 col-md-12 col-sm-12">
                     <label for="amount" class="form-label">Amount (Rupiah)</label>
-                    <input type="number" class="form-control" id="amount" name="amount" value="{{ old('amount') }}">
+                    <input type="number" class="form-control" id="amount" step="5000"
+                    name="amount" value="{{ old('amount') }}">
                 </div>
                 <div class="mb-3 col-md-12 col-sm-12">
                     <label for="type" class="form-label">Type</label>
