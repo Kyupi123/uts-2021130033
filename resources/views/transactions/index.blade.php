@@ -39,7 +39,7 @@
                                 {{ $transaction->id }}
                             </a>
                         </th>
-                        <td>{{ $transaction->amount }}</td>
+                        <td>Rp. {{ number_format($transaction->amount, 2, ',', '.') }}</td>
                         <td>{{ $transaction->type }}</td>
                         @if ($transaction->type == 'income')
                         @php
@@ -92,9 +92,9 @@
                         <th>Jumlah Transaksi Expense</th>
                     </tr>
                     <tr>
-                        <th>Rp. {{ $balance }}</th>
-                        <th>Rp. {{ $totincome }}</th>
-                        <th>Rp. {{ $totexpense }}</th>
+                        <th>Rp. {{ number_format($balance, 2, ',', '.') }}</th>
+                        <th>Rp. {{ number_format($totincome, 2, ',', '.') }}</th>
+                        <th>Rp. {{ number_format($totexpense, 2, ',', '.') }}</th>
                         <th>{{ $jmlincome }}</th>
                         <th>{{ $jmlexpense }}</th>
                     </tr>
